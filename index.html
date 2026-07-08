@@ -3,76 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>German Vocabulary Trainer</title>
-    
+
+    <title>German Trainer</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<nav class="navbar">
+<header class="navbar">
+
     <div class="logo">
         🇩🇪 German Trainer
     </div>
 
-    <ul class="nav-links">
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Study</a></li>
-        <li><a href="#">Categories</a></li>
-        <li><a href="#">Statistics</a></li>
-        <li><a href="#">Settings</a></li>
-    </ul>
-</nav>
+    <nav>
+        <button onclick="showPage('dashboard')">Dashboard</button>
+        <button onclick="showPage('study')">Study</button>
+        <button onclick="showPage('categories')">Categories</button>
+        <button onclick="showPage('statistics')">Statistics</button>
+        <button onclick="showPage('settings')">Settings</button>
+    </nav>
 
-<div class="container">
+</header>
 
-    <h1>Welcome!</h1>
+
+<main>
+
+
+<section id="dashboard" class="page active">
+
+    <h1>Welcome back 👋</h1>
 
     <p class="subtitle">
-        Learn German vocabulary through active recall.
+        Continue learning German vocabulary.
     </p>
 
-    <div class="card">
 
-        <h2 id="question">
-            der Hund
-        </h2>
+    <div class="grid">
 
-        <input
-            type="text"
-            id="answer"
-            placeholder="Type the English translation..."
-            autocomplete="off">
 
-        <button id="checkButton">
-            Check
-        </button>
+        <div class="card">
+            <h3>Today's Goal</h3>
+            <p class="big">
+                20 words
+            </p>
+        </div>
 
-        <p id="feedback"></p>
 
-    </div>
-
-    <div class="stats">
-
-        <div class="stat">
+        <div class="card">
             <h3>Words Learned</h3>
-            <p id="learned">0</p>
+            <p class="big">
+                0
+            </p>
         </div>
 
-        <div class="stat">
-            <h3>Accuracy</h3>
-            <p id="accuracy">0%</p>
-        </div>
 
-        <div class="stat">
+        <div class="card">
             <h3>Current Streak</h3>
-            <p id="streak">0</p>
+            <p class="big">
+                🔥 0 days
+            </p>
         </div>
+
 
     </div>
+
+
+    <button class="primary"
+        onclick="showPage('study')">
+        Start Studying
+    </button>
+
+
+</section>
+
+
+
+<section id="study" class="page">
+
+
+<h1>Study</h1>
+
+
+<div class="study-card">
+
+<p class="label">
+German
+</p>
+
+
+<h2>
+der Hund
+</h2>
+
+
+<input
+placeholder="Type English translation">
+
+
+<button class="primary">
+Check
+</button>
+
 
 </div>
 
-<script src="script.js"></script>
+
+</section>
+
+
+
+
+
+<section id="categories" class="page">
+
+
+<h1>Categories</h1>
+
+
+<div class="grid">
+
+
+<div class="card">
+📚 Animals
+</div>
+
+<div class="card">
+🍎 Food
+</div>
+
+<div class="card">
+✈️ Travel
+</div>
+
+<div class="card">
+🏠 Home
+</div>
+
+<div class="card">
+💼 Work
+</div>
+
+<div class="card">
+🗣 Verbs
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="statistics" class="page">
+
+
+<h1>Statistics</h1>
+
+
+<div class="card">
+
+<h3>Your Progress</h3>
+
+<p>
+Words learned: 0
+</p>
+
+<p>
+Accuracy: 0%
+</p>
+
+<p>
+Longest streak: 0 days
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section id="settings" class="page">
+
+
+<h1>Settings</h1>
+
+
+<div class="card">
+
+<h3>Preferences</h3>
+
+<p>
+⚙️ Settings will be added later.
+</p>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script src="app.js"></script>
 
 </body>
 </html>
