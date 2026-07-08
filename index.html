@@ -78,8 +78,6 @@
 
 </section>
 
-
-
 <section id="study" class="page">
 
 
@@ -93,26 +91,33 @@ German
 </p>
 
 
-<h2>
-der Hund
+<h2 id="word">
+Loading...
 </h2>
 
 
 <input
-placeholder="Type English translation">
+id="answer"
+placeholder="Type English translation..."
+autocomplete="off">
 
 
-<button class="primary">
+<button 
+class="primary"
+onclick="checkAnswer()">
+
 Check
+
 </button>
+
+
+<p id="feedback"></p>
 
 
 </div>
 
 
 </section>
-
-
 
 
 
