@@ -3,23 +3,44 @@ let words = [];
 let currentWord = null;
 
 
+// -------------------------
 // Load words
+// -------------------------
 
 fetch("words.json")
 
-.then(response => response.json())
+.then(response => {
+
+    if (!response.ok) {
+        throw new Error("Could not load words.json");
+    }
+
+    return response.json();
+
+})
 
 .then(data => {
 
-    words = data;
+    words = loadProgress(data);
+
+    updateStats();
 
     loadWord();
+
+})
+
+.catch(error => {
+
+    console.error(error);
 
 });
 
 
 
 
+// -------------------------
+// Page navigation
+// -------------------------
 
 function showPage(pageId){
 
@@ -38,11 +59,72 @@ function showPage(pageId){
     .getElementById(pageId)
     .classList.add("active");
 
+
+    // Focus answer box when entering study
+
+    if(pageId === "study"){
+
+        setTimeout(() => {
+
+            document
+            .getElementById("answer")
+            .focus();
+
+        },100);
+
+    }
+
 }
 
 
 
 
+// -------------------------
+// Save progress
+// -------------------------
+
+function saveProgress(){
+
+    localStorage.setItem(
+        "germanTrainerWords",
+        JSON.stringify(words)
+    );
+
+}
+
+
+
+
+// -------------------------
+// Load saved progress
+// -------------------------
+
+function loadProgress(defaultWords){
+
+
+    const saved =
+    localStorage.getItem(
+        "germanTrainerWords"
+    );
+
+
+    if(saved){
+
+        return JSON.parse(saved);
+
+    }
+
+
+    return defaultWords;
+
+}
+
+
+
+
+// -------------------------
+// Pick next word
+// -------------------------
 
 function loadWord(){
 
@@ -53,10 +135,28 @@ function loadWord(){
     );
 
 
+
+    if(availableWords.length === 0){
+
+        document
+        .getElementById("word")
+        .textContent =
+        "All words mastered 🎉";
+
+
+        return;
+
+    }
+
+
+
+
     const randomIndex =
     Math.floor(
-        Math.random()*availableWords.length
+        Math.random() *
+        availableWords.length
     );
+
 
 
     currentWord =
@@ -66,28 +166,44 @@ function loadWord(){
 
     document
     .getElementById("answer")
-    .value="";
+    .value = "";
+
 
 
     document
     .getElementById("feedback")
-    .textContent="";
+    .textContent = "";
 
 
 
     updateQuestion();
+
+
+
+    document
+    .getElementById("answer")
+    .focus();
 
 }
 
 
 
 
+// -------------------------
+// Display question
+// -------------------------
 
 function updateQuestion(){
 
 
     const wordDisplay =
     document.getElementById("word");
+
+
+
+    const label =
+    document.querySelector(".label");
+
 
 
     if(currentWord.stage === "recognition"){
@@ -97,9 +213,7 @@ function updateQuestion(){
         currentWord.german;
 
 
-        document
-        .querySelector(".label")
-        .textContent =
+        label.textContent =
         "German → English";
 
 
@@ -113,13 +227,12 @@ function updateQuestion(){
         currentWord.english;
 
 
-        document
-        .querySelector(".label")
-        .textContent =
+        label.textContent =
         "English → German";
 
 
     }
+
 
 }
 
@@ -127,7 +240,17 @@ function updateQuestion(){
 
 
 
+// -------------------------
+// Check answer
+// -------------------------
+
 function checkAnswer(){
+
+
+    if(!currentWord){
+        return;
+    }
+
 
 
     const input =
@@ -144,7 +267,7 @@ function checkAnswer(){
 
 
 
-    let correct;
+    let correct = false;
 
 
 
@@ -153,7 +276,8 @@ function checkAnswer(){
 
         correct =
         input ===
-        currentWord.english.toLowerCase();
+        currentWord.english
+        .toLowerCase();
 
 
     }
@@ -164,7 +288,8 @@ function checkAnswer(){
 
         correct =
         input ===
-        currentWord.german.toLowerCase();
+        currentWord.german
+        .toLowerCase();
 
 
     }
@@ -185,10 +310,12 @@ function checkAnswer(){
 
 
 
+
         if(currentWord.stage === "recognition"){
 
 
             currentWord.recognition++;
+
 
 
             if(currentWord.recognition >= 3){
@@ -199,7 +326,7 @@ function checkAnswer(){
 
 
                 feedback.textContent =
-                "✓ Unlocked! Now type German next time";
+                "🎯 Unlocked! Next time type German";
 
 
             }
@@ -214,7 +341,8 @@ function checkAnswer(){
             currentWord.production++;
 
 
-            if(currentWord.production >=3){
+
+            if(currentWord.production >= 3){
 
 
                 currentWord.stage =
@@ -232,7 +360,18 @@ function checkAnswer(){
 
 
 
-        setTimeout(loadWord,1200);
+
+        saveProgress();
+
+        updateStats();
+
+
+
+        setTimeout(() => {
+
+            loadWord();
+
+        },1200);
 
 
 
@@ -248,6 +387,64 @@ function checkAnswer(){
 
         feedback.className =
         "incorrect";
+
+
+    }
+
+
+}
+
+
+
+
+// -------------------------
+// Enter key = Check button
+// -------------------------
+
+document
+.getElementById("answer")
+.addEventListener("keydown", function(event){
+
+
+    if(event.key === "Enter"){
+
+
+        checkAnswer();
+
+
+    }
+
+
+});
+
+
+
+
+
+// -------------------------
+// Statistics
+// -------------------------
+
+function updateStats(){
+
+
+    const learned =
+    words.filter(word =>
+        word.stage === "mastered"
+    ).length;
+
+
+
+    const learnedElement =
+    document.getElementById("learned");
+
+
+
+    if(learnedElement){
+
+
+        learnedElement.textContent =
+        learned;
 
 
     }
