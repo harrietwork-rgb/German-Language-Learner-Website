@@ -270,8 +270,28 @@ justify-content:center;
 .grid{
 
 grid-template-columns:1fr;
+  
+
+#feedback{
+
+margin-top:20px;
+
+font-size:20px;
+
+font-weight:bold;
 
 }
 
+
+.correct{
+
+color:#16a34a;
+
+}
+
+
+.incorrect{
+
+color:#dc2626;
 
 }
