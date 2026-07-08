@@ -137,7 +137,17 @@ function checkAnswer(){
     .trim()
     .toLowerCase();
 
+document
+.getElementById("answer")
+.addEventListener("keydown", function(event){
 
+    if(event.key === "Enter"){
+
+        checkAnswer();
+
+    }
+
+});
 
     const feedback =
     document.getElementById("feedback");
