@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "german": "der Hund",
+  "english": "dog",
+  "level": "A1",
+  "category": "Animals",
+  "recognition": {
+    "correct": 0,
+    "required": 3
+  },
+  "production": {
+    "correct": 0,
+    "required": 3
+  }
+}
