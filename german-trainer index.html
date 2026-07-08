@@ -9,24 +9,38 @@
 </head>
 <body>
 
+<nav class="navbar">
+    <div class="logo">
+        🇩🇪 German Trainer
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Study</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Statistics</a></li>
+        <li><a href="#">Settings</a></li>
+    </ul>
+</nav>
+
 <div class="container">
 
-    <h1>🇩🇪 German Vocabulary Trainer</h1>
+    <h1>Welcome!</h1>
 
     <p class="subtitle">
-        Learn German vocabulary through typing.
+        Learn German vocabulary through active recall.
     </p>
 
     <div class="card">
 
         <h2 id="question">
-            Loading...
+            der Hund
         </h2>
 
         <input
             type="text"
             id="answer"
-            placeholder="Type your answer..."
+            placeholder="Type the English translation..."
             autocomplete="off">
 
         <button id="checkButton">
@@ -50,7 +64,7 @@
         </div>
 
         <div class="stat">
-            <h3>Streak</h3>
+            <h3>Current Streak</h3>
             <p id="streak">0</p>
         </div>
 
