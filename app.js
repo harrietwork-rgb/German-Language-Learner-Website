@@ -60,8 +60,6 @@ function showPage(pageId){
     .classList.add("active");
 
 
-    // Focus answer box when entering study
-
     if(pageId === "study"){
 
         setTimeout(() => {
@@ -95,8 +93,9 @@ function saveProgress(){
 
 
 
+
 // -------------------------
-// Load saved progress
+// Load progress
 // -------------------------
 
 function loadProgress(defaultWords){
@@ -123,7 +122,7 @@ function loadProgress(defaultWords){
 
 
 // -------------------------
-// Pick next word
+// Select next word
 // -------------------------
 
 function loadWord(){
@@ -143,18 +142,15 @@ function loadWord(){
         .textContent =
         "All words mastered 🎉";
 
-
         return;
 
     }
 
 
 
-
     const randomIndex =
     Math.floor(
-        Math.random() *
-        availableWords.length
+        Math.random() * availableWords.length
     );
 
 
@@ -190,7 +186,7 @@ function loadWord(){
 
 
 // -------------------------
-// Display question
+// Display current question
 // -------------------------
 
 function updateQuestion(){
@@ -198,7 +194,6 @@ function updateQuestion(){
 
     const wordDisplay =
     document.getElementById("word");
-
 
 
     const label =
@@ -219,7 +214,6 @@ function updateQuestion(){
 
     }
 
-
     else {
 
 
@@ -233,9 +227,7 @@ function updateQuestion(){
 
     }
 
-
 }
-
 
 
 
@@ -276,24 +268,20 @@ function checkAnswer(){
 
         correct =
         input ===
-        currentWord.english
-        .toLowerCase();
+        currentWord.english.toLowerCase();
 
 
     }
-
 
     else {
 
 
         correct =
         input ===
-        currentWord.german
-        .toLowerCase();
+        currentWord.german.toLowerCase();
 
 
     }
-
 
 
 
@@ -307,7 +295,6 @@ function checkAnswer(){
 
         feedback.className =
         "correct";
-
 
 
 
@@ -360,7 +347,6 @@ function checkAnswer(){
 
 
 
-
         saveProgress();
 
         updateStats();
@@ -378,56 +364,64 @@ function checkAnswer(){
     }
 
 
-else {
-
-
-    let correctAnswer;
-
-
-    if(currentWord.stage === "recognition"){
-
-        correctAnswer = currentWord.english;
-
-    }
 
     else {
 
-        correctAnswer = currentWord.german;
+
+        let correctAnswer;
+
+
+
+        if(currentWord.stage === "recognition"){
+
+            correctAnswer =
+            currentWord.english;
+
+        }
+
+        else {
+
+            correctAnswer =
+            currentWord.german;
+
+        }
+
+
+
+        feedback.textContent =
+        "✗ Correct answer: " + correctAnswer;
+
+
+        feedback.className =
+        "incorrect";
+
+
+
+        document
+        .getElementById("answer")
+        .value = "";
+
+
+
+        setTimeout(() => {
+
+            loadWord();
+
+        },2500);
+
+
 
     }
 
 
-
-    feedback.textContent =
-    "✗ Correct answer: " + correctAnswer;
-
-
-    feedback.className =
-    "incorrect";
-
-
-
-    // Show next word after a short delay
-
-    setTimeout(() => {
-
-        loadWord();
-
-    }, 2500);
-
-
 }
 
-    }
-
-
-}
 
 
 
 
 // -------------------------
-// Enter key = Check button
+// Enter = Check
 // -------------------------
 
 document
@@ -437,9 +431,7 @@ document
 
     if(event.key === "Enter"){
 
-
         checkAnswer();
-
 
     }
 
@@ -471,10 +463,8 @@ function updateStats(){
 
     if(learnedElement){
 
-
         learnedElement.textContent =
         learned;
-
 
     }
 
