@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Trainer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🇩🇪 German Vocabulary Trainer</h1>
+
+    <p class="subtitle">
+        Learn German vocabulary through typing.
+    </p>
+
+    <div class="card">
+
+        <h2 id="question">
+            Loading...
+        </h2>
+
+        <input
+            type="text"
+            id="answer"
+            placeholder="Type your answer..."
+            autocomplete="off">
+
+        <button id="checkButton">
+            Check
+        </button>
+
+        <p id="feedback"></p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>Words Learned</h3>
+            <p id="learned">0</p>
+        </div>
+
+        <div class="stat">
+            <h3>Accuracy</h3>
+            <p id="accuracy">0%</p>
+        </div>
+
+        <div class="stat">
+            <h3>Streak</h3>
+            <p id="streak">0</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
