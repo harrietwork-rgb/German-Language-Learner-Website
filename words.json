@@ -1,26 +1,26 @@
 [
     {
-        "german": "der Hund",
-        "english": "dog"
+        "id":1,
+        "german":"der Hund",
+        "english":"dog",
+        "recognition":0,
+        "production":0,
+        "stage":"recognition"
     },
     {
-        "german": "die Katze",
-        "english": "cat"
+        "id":2,
+        "german":"die Katze",
+        "english":"cat",
+        "recognition":0,
+        "production":0,
+        "stage":"recognition"
     },
     {
-        "german": "das Haus",
-        "english": "house"
-    },
-    {
-        "german": "der Tisch",
-        "english": "table"
-    },
-    {
-        "german": "das Buch",
-        "english": "book"
-    },
-    {
-        "german": "die Schule",
-        "english": "school"
+        "id":3,
+        "german":"das Haus",
+        "english":"house",
+        "recognition":0,
+        "production":0,
+        "stage":"recognition"
     }
 ]
