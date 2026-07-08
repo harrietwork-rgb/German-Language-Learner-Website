@@ -144,8 +144,15 @@ document
     if(event.key === "Enter"){
 
         checkAnswer();
+        
+saveProgress();
 
-    }
+updateStats();
+
+setTimeout(() => {
+    loadWord();
+    document.getElementById("answer").focus();
+}, 1200);
 
 });
 
