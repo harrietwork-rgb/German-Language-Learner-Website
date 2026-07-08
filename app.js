@@ -378,16 +378,45 @@ function checkAnswer(){
     }
 
 
+else {
+
+
+    let correctAnswer;
+
+
+    if(currentWord.stage === "recognition"){
+
+        correctAnswer = currentWord.english;
+
+    }
+
     else {
 
+        correctAnswer = currentWord.german;
 
-        feedback.textContent =
-        "✗ Try again";
+    }
 
 
-        feedback.className =
-        "incorrect";
 
+    feedback.textContent =
+    "✗ Correct answer: " + correctAnswer;
+
+
+    feedback.className =
+    "incorrect";
+
+
+
+    // Show next word after a short delay
+
+    setTimeout(() => {
+
+        loadWord();
+
+    }, 2500);
+
+
+}
 
     }
 
